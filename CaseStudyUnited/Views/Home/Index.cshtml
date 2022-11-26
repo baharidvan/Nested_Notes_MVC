@@ -36,7 +36,7 @@
                         <td class="col-md-7">@item.Content</td>
                         <td class="col-md-2" style="font-size:12px;">@item.Date</td>
                         <!--<td class="col-md-2">@item.ParentId</td>-->
-                        <td class="col-md-1">@item.Level</td>
+                        <!--<td class="col-md-1">@item.Level</td>-->
                         @using (Html.BeginForm("DeleteNote", "Home", new { id = item.Id }, FormMethod.Post))
                         {
                             <td class="col-md-1"><input type="submit" value="Delete" class="btn btn-danger" /></td>

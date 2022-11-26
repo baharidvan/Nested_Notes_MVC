@@ -1,0 +1,66 @@
+﻿@using CaseStudyUnited.Entity
+@model IEnumerable<Note>
+@{
+    ViewBag.Title = "Home Page";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css">
+</head>
+
+    <hr />
+    <hr />
+    <hr />
+
+    @if (Model != null && Model.Count() != 0)
+    {
+        <!--<thead>
+                 <tr>
+                     <th class="col-md-1">Id</th>
+                     <th class="col-md-2">User Name</th>
+                     <th class="col-md-7">Note</th>
+                     <th class="col-md-2">Date</th>
+                     <th class="col-md-2">Parent Id</th>
+                     <th class="col-md-2">LEVEL</th>
+                     <th class="col-md-2"></th>
+                     <th class="col-md-2"></th>
+                 </tr>
+             </thead> -->
+        foreach (var item in Model)
+        {
+            <div class="level_@item.Level">
+                <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <td class="col-md-1">@item.Id</td>
+                        <!--<td class="col-md-2">@item.UserName</td>-->
+                        <td class="col-md-7">@item.Content</td>
+                        <td class="col-md-2" style="font-size:12px;">@item.Date</td>
+                        <!--<td class="col-md-2">@item.ParentId</td>-->
+                        <td class="col-md-1">@item.Level</td>
+                        @using (Html.BeginForm("DeleteNote", "Home", new { id = item.Id }, FormMethod.Post))
+                        {
+                            <td class="col-md-1"><input type="submit" value="Delete" class="btn btn-danger" /></td>
+                        }
+                        @using (Html.BeginForm("AddNote", "Home", new { id = item.Id }, FormMethod.Post))
+                        {
+                            <td class="col-md-1">
+                                <input name="Content" type="text" class="form-control" placeholder="Add note">
+                                <button type="submit" class="btn btn-primary">Comment</button>
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        }
+     }
+     @using (Html.BeginForm("AddNote", "Home", new { id = 0 }, FormMethod.Post))
+     {
+         <div>
+             <input name="Content" type="text" class="form-control" placeholder="Add note">
+             <button type="submit" class="btn btn-primary">Comment</button>
+         </div>
+     }
+
+
+
